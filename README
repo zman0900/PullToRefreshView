@@ -5,6 +5,7 @@ It is:
  - very easy to implement
  - doesn't suck
  - compatable with ARC and non-ARC
+ - works from the top or bottom of the screen
 
 To implement it:
  - add the five files (PullToRefreshView.{h,m}, ARCMacros.h, arrow.png and arrow@2x.png) to your project
@@ -13,7 +14,7 @@ To implement it:
  - add QuartzCore to your project
  - add an ivar: PullToRefreshView *pull; // or whatever you want to name it
  - in loadView or viewDidLoad, add this (and be sure to release in dealloc/viewDidUnload, etc):
-    pull = [[PullToRefreshView alloc] initWithScrollView:<your scroll view here>];
+    pull = [[PullToRefreshView alloc] initWithScrollView:<your scroll view here> atBottom:YES/NO];
     [pull setDelegate:self];
     [<your scroll view here> addSubview:pull];
  - in dealloc and viewDidUnload, add calls to:
