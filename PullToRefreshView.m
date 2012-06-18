@@ -177,7 +177,7 @@
             [self setImageFlipped:YES];
 		    break;
 		case kPullToRefreshViewStateNormal:
-		    statusLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Pull %@ to refresh...", @"Normal Label Text"), isBottom ? NSLocalizedString(@"up", @"Pull [up]") : NSLocalizedString(@"down", @"Pull [down]")];
+		    statusLabel.text = isBottom ? NSLocalizedString(@"Pull up to refresh...", @"Pull up") : NSLocalizedString(@"Pull down to refresh...", @"Pull down");
             [self showActivity:NO animated:NO];
             [self setImageFlipped:NO];
             scrollView.contentInset = UIEdgeInsetsZero;
