@@ -142,10 +142,9 @@
 		date = [delegate pullToRefreshViewLastUpdated:self];
 
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	[formatter setAMSymbol:@"AM"];
-	[formatter setPMSymbol:@"PM"];
-	[formatter setDateFormat:@"MM/dd/yy hh:mm a"];
-	subtitleLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [formatter stringFromDate:date]];
+	[formatter setDateStyle:NSDateFormatterShortStyle];
+	[formatter setTimeStyle:NSDateFormatterMediumStyle];
+	subtitleLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Last Updated: %@", @"Last Updated Format String."), [formatter stringFromDate:date]];
 	SAFE_ARC_RELEASE(formatter);
 }
 
@@ -173,19 +172,19 @@
 
 	switch (state) {
 		case kPullToRefreshViewStateReady:
-		    statusLabel.text = @"Release to refresh…";
+		    statusLabel.text = NSLocalizedString(@"Release to refresh…", @"Pulled Label Text");
             [self showActivity:NO animated:NO];
             [self setImageFlipped:YES];
 		    break;
 		case kPullToRefreshViewStateNormal:
-		    statusLabel.text = [NSString stringWithFormat:@"Pull %@ to refresh...", isBottom ? @"up" : @"down"];
+		    statusLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Pull %@ to refresh...", @"Normal Label Text"), isBottom ? NSLocalizedString(@"up", @"Pull [up]") : NSLocalizedString(@"down", @"Pull [down]")];
             [self showActivity:NO animated:NO];
             [self setImageFlipped:NO];
             scrollView.contentInset = UIEdgeInsetsZero;
 		    break;
 		case kPullToRefreshViewStateLoading:
         case kPullToRefreshViewStateProgrammaticRefresh:
-		    statusLabel.text = @"Loading…";
+		    statusLabel.text = NSLocalizedString(@"Loading…", @"Loading Label Text");
             [self showActivity:YES animated:YES];
             [self setImageFlipped:NO];
 		    [self parkVisible];
